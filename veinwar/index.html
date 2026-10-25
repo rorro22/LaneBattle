@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Veinwar · Suspect Games</title>
+<meta name="description" content="Veinwar: batallas de carril 1v1. Arma tu ejército, evoluciona tus monos y derriba la Base rival. Únete a la prueba en Google Play.">
+<meta property="og:title" content="Veinwar · Batallas de carril 1v1">
+<meta property="og:description" content="Arma tu ejército, evoluciona tus monos y derriba la Base rival. Únete a la prueba en Google Play.">
+<meta property="og:image" content="https://rorro22.github.io/LaneBattle/veinwar/img/portada_es.jpg">
+<meta property="og:url" content="https://rorro22.github.io/LaneBattle/veinwar/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/icono_192.png">
+<style>
+  @font-face {
+    font-family: "Oxanium";
+    src: url("fonts/Oxanium-Variable.ttf") format("truetype");
+    font-weight: 200 800;
+    font-display: swap;
+  }
+  :root {
+    --bg: #0b0d10;
+    --panel: #15181d;
+    --line: #2a2f37;
+    --text: #e9eaec;
+    --dim: #a3a8b0;
+    --gold: #f2c14e;
+    --gold-dark: #6b5313;
+    --radkorps: #9fe05a;
+    --magmavora: #ff8a3d;
+    --helix: #63c3ff;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Oxanium", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  html[lang="es"] .en, html[lang="en"] .es { display: none; }
+  a { color: var(--gold); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--helix); outline-offset: 3px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header.top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0;
+  }
+  .studio { display: flex; align-items: center; gap: 10px; color: var(--dim); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+  .studio img { width: 34px; height: 34px; }
+  .langs { display: flex; gap: 6px; }
+  .langs button {
+    font: inherit; font-size: 14px; font-weight: 600; color: var(--dim);
+    background: transparent; border: 1px solid var(--line); border-radius: 6px;
+    padding: 4px 10px; cursor: pointer;
+  }
+  .langs button[aria-pressed="true"] { color: var(--bg); background: var(--gold); border-color: var(--gold); }
+  .hero img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 8px; }
+  .button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 54px; padding: 0 24px; border-radius: 10px;
+    font-weight: 700; font-size: 18px; text-decoration: none; letter-spacing: .02em;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  .button.main { background: var(--gold); color: #1a1405; }
+  .button.second { background: var(--panel); color: var(--text); border: 1px solid var(--line); }
+  .button:hover { filter: brightness(1.08); }
+  .note { color: var(--dim); font-size: 15px; margin: 6px 0 0; }
+  h2 {
+    font-size: 22px; letter-spacing: .06em; text-transform: uppercase;
+    margin: 44px 0 14px; padding-left: 12px; border-left: 4px solid var(--gold);
+  }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .steps li {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px 14px 60px; position: relative;
+  }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 16px; top: 13px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--gold); color: #1a1405; font-weight: 800; display: grid; place-items: center;
+  }
+  .steps { counter-reset: step; }
+  .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gallery figure { margin: 0; }
+  .gallery img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); }
+  .gallery figcaption { color: var(--dim); font-size: 14px; margin-top: 6px; }
+  .factions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .faction {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px;
+    border-top: 3px solid var(--accent);
+  }
+  .faction img { width: 72px; height: 72px; border-radius: 8px; display: block; margin-bottom: 10px; }
+  .faction h3 { margin: 0 0 6px; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; font-size: 19px; }
+  .faction p { margin: 0; color: var(--dim); font-size: 15px; }
+  .features { padding-left: 20px; margin: 0; }
+  .features li { margin: 6px 0; }
+  .features li::marker { color: var(--gold); }
+  .lore { font-size: 19px; color: var(--text); margin: 26px 0 0; }
+  footer { margin: 56px 0 30px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  @media (max-width: 720px) {
+    .gallery, .factions { grid-template-columns: 1fr; }
+    .button { width: 100%; }
+    h2 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="studio"><img src="img/estudio.png" alt="">Suspect Games</div>
+    <div class="langs" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img data-lang-src="img/portada_{lang}.jpg" src="img/portada_es.jpg" width="1024" height="500" alt="Veinwar: batallas de carril 1v1">
+    <p class="lore">
+      <span class="es">Año 2500. La corteza del planeta se abrió y brotaron los cristales. Tres facciones pelean por cada veta, carril por carril.</span>
+      <span class="en">Year 2500. The planet's crust cracked open and crystals burst out. Three factions fight for every vein, lane by lane.</span>
+    </p>
+    <div class="cta">
+      <a class="button main" href="https://play.google.com/apps/testing/sh.suspect.lanebattle">
+        <span class="es">Unirme a la prueba</span><span class="en">Join the test</span>
+      </a>
+      <a class="button second" href="https://play.google.com/store/apps/details?id=sh.suspect.lanebattle">
+        <span class="es">Abrir en Google Play</span><span class="en">Open in Google Play</span>
+      </a>
+    </div>
+    <p class="note">
+      <span class="es">Gratis, para Android. Sin anuncios.</span>
+      <span class="en">Free, for Android. No ads.</span>
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="es">Cómo probarlo</span><span class="en">How to try it</span></h2>
+    <ol class="steps">
+      <li>
+        <span class="es">Desde el celular, toca <strong>Unirme a la prueba</strong> con la cuenta de Google que está en la lista de testers.</span>
+        <span class="en">On your phone, tap <strong>Join the test</strong> with the Google account that is on the testers list.</span>
+      </li>
+      <li>
+        <span class="es">Toca <strong>Convertirme en tester</strong> (o "Become a tester").</span>
+        <span class="en">Tap <strong>Become a tester</strong>.</span>
+      </li>
+      <li>
+        <span class="es">Toca <strong>Abrir en Google Play</strong> e instálalo. Si ya lo tienes, ahí mismo aparece la actualización.</span>
+        <span class="en">Tap <strong>Open in Google Play</strong> and install it. If you already have it, the update shows up there.</span>
+      </li>
+    </ol>
+    <p class="note">
+      <span class="es">¿Dice que no tienes acceso? Tu cuenta todavía no está en la lista: pídele a quien te invitó que te agregue. A veces Google Play tarda unos minutos en mostrar la versión nueva.</span>
+      <span class="en">Does it say you don't have access? Your account isn't on the list yet: ask whoever invited you to add you. Sometimes Google Play takes a few minutes to show the new version.</span>
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="es">El juego</span><span class="en">The game</span></h2>
+    <p>
+      <span class="es">Arma tu ejército en una cuadrícula y míralo pelear solo: cada 8 segundos sale al carril una copia de toda tu formación. Derriba las torres enemigas para abrir las evoluciones de tus monos, elige una rama por línea, vuélvelas élite y destruye la Base rival.</span>
+      <span class="en">Build your army on a grid and watch it fight on its own: every 8 seconds a copy of your whole formation marches into the lane. Destroy enemy towers to open your units' evolutions, pick one branch per line, make them elite and tear down the rival Base.</span>
+    </p>
+    <div class="gallery">
+      <figure><img data-lang-src="img/batalla_{lang}.jpg" src="img/batalla_es.jpg" width="1280" height="720" loading="lazy" alt=""><figcaption><span class="es">Batallas de carril 1v1</span><span class="en">1v1 lane battles</span></figcaption></figure>
+      <figure><img data-lang-src="img/poder_{lang}.jpg" src="img/poder_es.jpg" width="1280" height="720" loading="lazy" alt=""><figcaption><span class="es">El poder de tu facción</span><span class="en">Your faction's power</span></figcaption></figure>
+      <figure><img data-lang-src="img/menu_{lang}.jpg" src="img/menu_es.jpg" width="1280" height="720" loading="lazy" alt=""><figcaption><span class="es">Partida libre, Clasificatoria y Campaña</span><span class="en">Free play, Ranked and Campaign</span></figcaption></figure>
+      <figure><img data-lang-src="img/bestiario_{lang}.jpg" src="img/bestiario_es.jpg" width="1280" height="720" loading="lazy" alt=""><figcaption><span class="es">39 monos en el Bestiario</span><span class="en">39 units in the Bestiary</span></figcaption></figure>
+      <figure><img data-lang-src="img/campana_{lang}.jpg" src="img/campana_es.jpg" width="1280" height="720" loading="lazy" alt=""><figcaption><span class="es">Una campaña de 15 misiones</span><span class="en">A 15-mission campaign</span></figcaption></figure>
+      <figure><img data-lang-src="img/perfil_{lang}.jpg" src="img/perfil_es.jpg" width="1280" height="720" loading="lazy" alt=""><figcaption><span class="es">Tu ficha, logros y cosméticos</span><span class="en">Your card, achievements and cosmetics</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="es">Tres facciones</span><span class="en">Three factions</span></h2>
+    <div class="factions">
+      <div class="faction" style="--accent: var(--radkorps)">
+        <img src="img/emblema_soviet.png" width="72" height="72" alt="">
+        <h3>Radkorps</h3>
+        <p><span class="es">Los exterminadores radiactivos de la Zona. Al morir dejan radiación.</span><span class="en">The radioactive exterminators of the Zone. They leave radiation when they fall.</span></p>
+      </div>
+      <div class="faction" style="--accent: var(--magmavora)">
+        <img src="img/emblema_vulkanion.png" width="72" height="72" alt="">
+        <h3>Magmavora</h3>
+        <p><span class="es">Los bichos de lava. Queman todo lo que tocan.</span><span class="en">The lava bugs. They burn everything they touch.</span></p>
+      </div>
+      <div class="faction" style="--accent: var(--helix)">
+        <img src="img/emblema_concord.png" width="72" height="72" alt="">
+        <h3>Helix</h3>
+        <p><span class="es">Los humanos rediseñados. Se potencian en grupo con su red Nexus.</span><span class="en">The redesigned humans. They grow stronger in groups through their Nexus network.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="es">Qué trae</span><span class="en">What's inside</span></h2>
+    <ul class="features es">
+      <li>39 monos: cada línea tiene una base y dos evoluciones a elegir, con habilidades como el escudo barrera, el golpe de choque, avanzar bajo tierra o la interferencia.</li>
+      <li>Ímpetu: tus monos pegan más fuerte cuanto más se acercan a la Base enemiga.</li>
+      <li>Partida libre contra el bot (3 dificultades), Clasificatoria con ligas y temporadas, y una Campaña de 15 misiones que va abriendo las líneas de monos.</li>
+      <li>Poder de facción y mejoras en cada partida; clima y hora distintos en cada batalla; hasta 120 FPS.</li>
+      <li>Opciones de accesibilidad: menos sacudidas y destellos, colores para daltónicos y texto más grande.</li>
+      <li>Tu ficha de jugador, misiones diarias, cosméticos, repeticiones y 14 logros.</li>
+      <li>En español e inglés.</li>
+    </ul>
+    <ul class="features en">
+      <li>39 units: each line has a base unit and two evolutions to choose from, with abilities like barrier shields, shock strikes, burrowing underground or jamming.</li>
+      <li>Momentum: your units hit harder the closer they get to the enemy Base.</li>
+      <li>Free play against the bot (3 difficulties), Ranked with leagues and seasons, and a 15-mission Campaign that unlocks unit lines.</li>
+      <li>A faction power and upgrades in every match; different weather and time of day in every battle; up to 120 FPS.</li>
+      <li>Accessibility options: less shaking and flashing, colorblind colors and larger text.</li>
+      <li>Your player card, daily missions, cosmetics, replays and 14 achievements.</li>
+      <li>In English and Spanish.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>© 2026 Suspect Games</span>
+    <a href="../"><span class="es">Política de privacidad</span><span class="en">Privacy policy</span></a>
+    <span class="es">Hecho con Godot.</span><span class="en">Made with Godot.</span>
+  </footer>
+</div>
+<script>
+  (function () {
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-lang-src]").forEach(function (img) {
+        img.src = img.getAttribute("data-lang-src").replace("{lang}", lang);
+      });
+      document.querySelectorAll(".langs button").forEach(function (button) {
+        button.setAttribute("aria-pressed", button.dataset.lang === lang ? "true" : "false");
+      });
+      try { localStorage.setItem("veinwar-lang", lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("veinwar-lang"); } catch (e) {}
+    var browser = (navigator.language || "es").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+    setLanguage(saved === "es" || saved === "en" ? saved : browser);
+    document.querySelectorAll(".langs button").forEach(function (button) {
+      button.addEventListener("click", function () { setLanguage(button.dataset.lang); });
+    });
+  })();
+</script>
+</body>
+</html>
