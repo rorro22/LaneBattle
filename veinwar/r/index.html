@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Te retaron en Veinwar</title>
+<meta name="description" content="Un amigo te reta en Veinwar: juega contra su ejército. Gratis en Google Play.">
+<meta property="og:title" content="Te retaron en Veinwar">
+<meta property="og:description" content="Juega contra el ejército de tu amigo y trata de ganarle. Gratis en Google Play.">
+<meta property="og:image" content="https://veinwar.vercel.app/img/portada_es.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link rel="apple-touch-icon" href="../img/icono_192.png">
+<style>
+  @font-face {
+    font-family: "Oxanium";
+    src: url("../fonts/Oxanium-Variable.ttf") format("truetype");
+    font-weight: 200 800;
+    font-display: swap;
+  }
+  :root {
+    --bg: #0b0d10;
+    --panel: #15181d;
+    --line: #2a2f37;
+    --text: #e9eaec;
+    --dim: #a3a8b0;
+    --gold: #f2c14e;
+    --helix: #63c3ff;
+    --accent: #f2c14e;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Oxanium", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  html[lang="es"] .en, html[lang="en"] .es { display: none; }
+  a { color: var(--gold); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--helix); outline-offset: 3px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+  .studio { display: flex; align-items: center; gap: 10px; color: var(--dim); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; text-decoration: none; }
+  .studio img { width: 34px; height: 34px; }
+  .langs { display: flex; gap: 6px; }
+  .langs button {
+    font: inherit; font-size: 14px; font-weight: 600; color: var(--dim);
+    background: transparent; border: 1px solid var(--line); border-radius: 6px;
+    padding: 4px 10px; cursor: pointer;
+  }
+  .langs button[aria-pressed="true"] { color: var(--bg); background: var(--gold); border-color: var(--gold); }
+  .challenge {
+    background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--accent);
+    border-radius: 12px; padding: 22px 18px; margin-top: 8px; text-align: center;
+  }
+  .challenge img.emblem { width: 96px; height: 96px; border-radius: 12px; display: block; margin: 0 auto 12px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; letter-spacing: .02em; }
+  .who { color: var(--accent); }
+  .detail { margin: 0; color: var(--dim); font-size: 18px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 0; justify-content: center; }
+  .button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 56px; padding: 0 24px; border-radius: 10px; border: 0; cursor: pointer;
+    font: inherit; font-weight: 700; font-size: 18px; text-decoration: none; letter-spacing: .02em;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  .button.main { background: var(--gold); color: #1a1405; }
+  .button.second { background: #20242b; color: var(--text); }
+  .button:hover { filter: brightness(1.08); }
+  .status { min-height: 26px; margin: 12px 0 0; color: #7fe08a; font-weight: 600; }
+  h2 {
+    font-size: 20px; letter-spacing: .06em; text-transform: uppercase;
+    margin: 36px 0 14px; padding-left: 12px; border-left: 4px solid var(--gold);
+  }
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; counter-reset: step; }
+  .steps li {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px 14px 60px; position: relative;
+  }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 16px; top: 13px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--gold); color: #1a1405; font-weight: 800; display: grid; place-items: center;
+  }
+  .note { color: var(--dim); font-size: 15px; margin: 18px 0 0; }
+  footer { margin: 44px 0 30px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  @media (max-width: 720px) {
+    .button { width: 100%; }
+    h1 { font-size: 25px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="studio" href="../"><img src="../img/estudio.png" alt="">Suspect Games</a>
+    <div class="langs" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="challenge" id="challenge">
+      <img class="emblem" id="emblem" src="../img/icono_192.png" alt="">
+      <h1>
+        <span class="es"><span class="who" data-who></span><span data-with-name hidden> te reta en Veinwar</span><span data-no-name>Te retaron en Veinwar</span></span>
+        <span class="en"><span class="who" data-who></span><span data-with-name hidden> challenges you in Veinwar</span><span data-no-name>You've been challenged in Veinwar</span></span>
+      </h1>
+      <p class="detail">
+        <span class="es" id="detail-es">Juega contra el ejército de tu amigo y trata de ganarle.</span>
+        <span class="en" id="detail-en">Play against your friend's army and try to beat it.</span>
+      </p>
+      <div class="cta">
+        <button class="button main" type="button" id="copy">
+          <span class="es">Copiar el reto</span><span class="en">Copy the challenge</span>
+        </button>
+        <a class="button second" href="https://play.google.com/store/apps/details?id=sh.suspect.lanebattle">
+          <span class="es">Bajar Veinwar gratis</span><span class="en">Get Veinwar free</span>
+        </a>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <h2><span class="es">Cómo jugarlo</span><span class="en">How to play it</span></h2>
+    <ol class="steps">
+      <li>
+        <span class="es">Toca <strong>Copiar el reto</strong>.</span>
+        <span class="en">Tap <strong>Copy the challenge</strong>.</span>
+      </li>
+      <li>
+        <span class="es">Abre Veinwar. Si no lo tienes, bájalo gratis de Google Play.</span>
+        <span class="en">Open Veinwar. If you don't have it, get it free on Google Play.</span>
+      </li>
+      <li>
+        <span class="es">En el menú entra a <strong>Retos</strong> y toca <strong>Pegar un reto</strong>.</span>
+        <span class="en">In the menu go to <strong>Challenges</strong> and tap <strong>Paste a challenge</strong>.</span>
+      </li>
+    </ol>
+    <p class="note">
+      <span class="es">El reto viaja dentro del enlace. Esta página no guarda ni manda nada.</span>
+      <span class="en">The challenge travels inside the link. This page stores and sends nothing.</span>
+    </p>
+  </main>
+
+  <footer>
+    <a href="../"><span class="es">Qué es Veinwar</span><span class="en">What is Veinwar</span></a>
+    <span>Suspect Games</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+    var PREFIX = "VW1.";
+    var TICKS_PER_SECOND = 50;
+    var FACTIONS = {
+      soviet: { name: "Radkorps", color: "#9fe05a", emblem: "../img/emblema_soviet.png" },
+      vulkanion: { name: "Magmavora", color: "#ff8a3d", emblem: "../img/emblema_vulkanion.png" },
+      concord: { name: "Helix", color: "#63c3ff", emblem: "../img/emblema_concord.png" }
+    };
+
+    // --- Idioma (igual que la página principal) ---
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll(".langs button").forEach(function (button) {
+        button.setAttribute("aria-pressed", button.dataset.lang === lang ? "true" : "false");
+      });
+      try { localStorage.setItem("veinwar-lang", lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem("veinwar-lang"); } catch (e) {}
+    var browser = (navigator.language || "es").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+    setLanguage(saved === "es" || saved === "en" ? saved : browser);
+    document.querySelectorAll(".langs button").forEach(function (button) {
+      button.addEventListener("click", function () { setLanguage(button.dataset.lang); });
+    });
+
+    // --- El reto que trae el enlace (después del #) ---
+    function codeFromHash() {
+      var hash = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+      var start = hash.indexOf(PREFIX);
+      if (start < 0) { return ""; }
+      var match = hash.slice(start + PREFIX.length).match(/^[A-Za-z0-9_-]+/);
+      return match && match[0].length <= 8000 ? PREFIX + match[0] : "";
+    }
+
+    function bytesFromCode(code) {
+      var text = code.slice(PREFIX.length).replace(/-/g, "+").replace(/_/g, "/");
+      while (text.length % 4 !== 0) { text += "="; }
+      var binary = atob(text);
+      var bytes = new Uint8Array(binary.length);
+      for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
+      return bytes;
+    }
+
+    // La misma suma de control que usa el juego (Fletcher de 16 bits).
+    function checksum(bytes) {
+      var a = 0, b = 0;
+      for (var i = 0; i < bytes.length; i++) {
+        a = (a + bytes[i]) % 255;
+        b = (b + a) % 255;
+      }
+      return (b << 8) | a;
+    }
+
+    function inflate(bytes) {
+      if (typeof DecompressionStream === "undefined") { return Promise.resolve(null); }
+      var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate"));
+      return new Response(stream).arrayBuffer().then(function (buffer) { return new Uint8Array(buffer); });
+    }
+
+    // Solo lo que se muestra: quién reta, con qué facción y cómo le fue.
+    function readHeader(data) {
+      var at = 0;
+      function u8() { if (at >= data.length) { throw new Error("corto"); } return data[at++]; }
+      function u32() { return (u8() | (u8() << 8) | (u8() << 16) | (u8() << 24)) >>> 0; }
+      function text() {
+        var length = u8();
+        if (at + length > data.length) { throw new Error("corto"); }
+        var value = new TextDecoder("utf-8").decode(data.subarray(at, at + length));
+        at += length;
+        return value;
+      }
+      if (u8() !== 1) { throw new Error("versión"); }
+      var won = u8() === 1;
+      u32();
+      var ticks = u32();
+      var name = text();
+      var faction = text();
+      return { won: won, ticks: ticks, name: cleanName(name), faction: faction };
+    }
+
+    // Letras, números, espacio, "_" y "-", como en el juego; hasta 16.
+    function cleanName(name) {
+      var cleaned;
+      try {
+        cleaned = name.replace(/[^\p{L}\p{N} _-]/gu, "");
+      } catch (e) {
+        cleaned = name.replace(/[^A-Za-z0-9 _-]/g, "");
+      }
+      cleaned = cleaned.replace(/ +/g, " ").trim().slice(0, 16).trim();
+      return cleaned.length >= 3 ? cleaned : "";
+    }
+
+    function formatTime(ticks) {
+      var seconds = Math.floor(ticks / TICKS_PER_SECOND);
+      var rest = seconds % 60;
+      return Math.floor(seconds / 60) + ":" + (rest < 10 ? "0" : "") + rest;
+    }
+
+    function show(header) {
+      var faction = FACTIONS[header.faction];
+      if (!faction) { return; }
+      document.getElementById("challenge").style.setProperty("--accent", faction.color);
+      document.getElementById("emblem").src = faction.emblem;
+      if (header.name) {
+        document.querySelectorAll("[data-who]").forEach(function (node) { node.textContent = header.name; });
+        document.querySelectorAll("[data-with-name]").forEach(function (node) { node.hidden = false; });
+        document.querySelectorAll("[data-no-name]").forEach(function (node) { node.hidden = true; });
+        document.title = header.name + " · Veinwar";
+      }
+      var time = formatTime(header.ticks);
+      document.getElementById("detail-es").textContent = header.won
+        ? "Su ejército de " + faction.name + " ganó en " + time + ". ¿Puedes vencerlo?"
+        : "Juega contra su ejército de " + faction.name + " y trata de ganarle.";
+      document.getElementById("detail-en").textContent = header.won
+        ? "Their " + faction.name + " army won in " + time + ". Can you beat it?"
+        : "Play against their " + faction.name + " army and try to beat it.";
+    }
+
+    var code = codeFromHash();
+    if (code) {
+      try {
+        var packed = bytesFromCode(code);
+        if (packed.length > 8) {
+          var body = packed.subarray(0, packed.length - 2);
+          var check = (packed[packed.length - 2] << 8) | packed[packed.length - 1];
+          if (checksum(body) === check) {
+            inflate(body).then(function (data) {
+              if (data) { show(readHeader(data)); }
+            }).catch(function () {});
+          }
+        }
+      } catch (e) {}
+    }
+
+    // Otro reto en la misma pestaña (cambia solo lo de después del #).
+    window.addEventListener("hashchange", function () { location.reload(); });
+
+    // --- Copiar el reto ---
+    function say(es, en) {
+      var status = document.getElementById("status");
+      status.textContent = document.documentElement.lang === "es" ? es : en;
+    }
+    function copied(ok) {
+      if (ok) {
+        say("Copiado. Ahora abre Veinwar, entra a Retos y toca Pegar un reto.", "Copied. Now open Veinwar, go to Challenges and tap Paste a challenge.");
+      } else {
+        say("No se pudo copiar: copia la dirección de esta página.", "Couldn't copy: copy this page's address.");
+      }
+    }
+    document.getElementById("copy").addEventListener("click", function () {
+      var link = location.href;
+      if (!code) {
+        say("Este enlace no trae un reto. Pídele a tu amigo que lo mande de nuevo.", "This link has no challenge. Ask your friend to send it again.");
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(function () { copied(true); }, function () { copied(fallbackCopy(link)); });
+      } else {
+        copied(fallbackCopy(link));
+      }
+    });
+    function fallbackCopy(text) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(area);
+      return ok;
+    }
+  })();
+</script>
+</body>
+</html>
